@@ -1,0 +1,403 @@
+<?xml version="1.0" ?>
+<sdf version="1.10">
+  <world name="lintasan_a">
+    <!-- Physics engine settings -->
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <!-- Gazebo Harmonic standard system plugins -->
+    <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+    <plugin
+      filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <!-- Sun Light -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.85 0.85 0.85 1</diffuse>
+      <specular>0.25 0.25 0.25 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.4 0.2 -1.0</direction>
+    </light>
+
+    <gravity>0 0 -9.8</gravity>
+
+    <!-- ========================================== -->
+    <!-- GROUND PLANE                               -->
+    <!-- ========================================== -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10 10</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10 10</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========================================== -->
+    <!-- START / FINISH PAD (Flat Red Box On Ground)-->
+    <!-- ========================================== -->
+    <model name="start_finish_dock">
+      <static>true</static>
+      <pose>1.80 -2.24 0.0005 0 0 0</pose>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.36 0.24 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.85 0.05 0.05 1</ambient>
+            <diffuse>0.85 0.05 0.05 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========================================== -->
+    <!-- RIGHT LEG BUOY GATES (3 Pairs, Gap 0.70m)  -->
+    <!-- ========================================== -->
+    <!-- Gate R1 (Bottom Right) -->
+    <model name="buoy_red_r1">
+      <static>true</static>
+      <pose>1.45 -0.77 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="buoy_green_r1">
+      <static>true</static>
+      <pose>2.15 -0.77 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.1 0.8 0.25 1</ambient><diffuse>0.1 0.8 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Gate R2 (Middle Right) -->
+    <model name="buoy_red_r2">
+      <static>true</static>
+      <pose>1.30 -0.18 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="buoy_green_r2">
+      <static>true</static>
+      <pose>2.00 -0.18 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.1 0.8 0.25 1</ambient><diffuse>0.1 0.8 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Gate R3 (Upper Right) -->
+    <model name="buoy_red_r3">
+      <static>true</static>
+      <pose>1.59 0.43 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="buoy_green_r3">
+      <static>true</static>
+      <pose>2.29 0.43 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.1 0.8 0.25 1</ambient><diffuse>0.1 0.8 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========================================== -->
+    <!-- TOP SPEED CORRIDOR GATES (4 Pairs, Gap 0.70m) -->
+    <!-- Green on outer (Y=+2.16), Red inner (Y=+1.46) -->
+    <!-- ========================================== -->
+    <!-- Gate T1 (Left) -->
+    <model name="buoy_green_t1">
+      <static>true</static>
+      <pose>-0.41 2.16 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.1 0.8 0.25 1</ambient><diffuse>0.1 0.8 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="buoy_red_t1">
+      <static>true</static>
+      <pose>-0.41 1.46 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Gate T2 -->
+    <model name="buoy_green_t2">
+      <static>true</static>
+      <pose>-0.10 2.16 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.1 0.8 0.25 1</ambient><diffuse>0.1 0.8 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="buoy_red_t2">
+      <static>true</static>
+      <pose>-0.10 1.46 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Gate T3 -->
+    <model name="buoy_green_t3">
+      <static>true</static>
+      <pose>0.22 2.16 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.1 0.8 0.25 1</ambient><diffuse>0.1 0.8 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="buoy_red_t3">
+      <static>true</static>
+      <pose>0.22 1.46 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Gate T4 (Right) -->
+    <model name="buoy_green_t4">
+      <static>true</static>
+      <pose>0.55 2.16 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.1 0.8 0.25 1</ambient><diffuse>0.1 0.8 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="buoy_red_t4">
+      <static>true</static>
+      <pose>0.55 1.46 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========================================== -->
+    <!-- LEFT LEG BUOY GATES (3 Pairs, Gap 0.70m)   -->
+    <!-- Red on outer (-X), Green on inner (+X)     -->
+    <!-- ========================================== -->
+    <!-- Gate L1 (Upper Left) -->
+    <model name="buoy_red_l1">
+      <static>true</static>
+      <pose>-2.05 0.91 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="buoy_green_l1">
+      <static>true</static>
+      <pose>-1.35 0.91 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.1 0.8 0.25 1</ambient><diffuse>0.1 0.8 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Gate L2 (Middle Left) -->
+    <model name="buoy_red_l2">
+      <static>true</static>
+      <pose>-2.25 0.11 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="buoy_green_l2">
+      <static>true</static>
+      <pose>-1.55 0.11 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.1 0.8 0.25 1</ambient><diffuse>0.1 0.8 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Gate L3 (Lower Left) -->
+    <model name="buoy_red_l3">
+      <static>true</static>
+      <pose>-2.25 -0.63 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.9 0.1 0.1 1</ambient><diffuse>0.9 0.1 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+    <model name="buoy_green_l3">
+      <static>true</static>
+      <pose>-1.55 -0.63 0.05 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><sphere><radius>0.05</radius></sphere></geometry></collision>
+        <visual name="vis">
+          <geometry><sphere><radius>0.05</radius></sphere></geometry>
+          <material><ambient>0.1 0.8 0.25 1</ambient><diffuse>0.1 0.8 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ========================================== -->
+    <!-- BOTTOM-LEFT OBSTACLES (Yellow & Blue Bars) -->
+    <!-- ========================================== -->
+    <!-- Obstacle 1 (Yellow Bar) -->
+    <model name="obstacle_yellow_bar">
+      <static>true</static>
+      <pose>-1.70 -1.34 0.04 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.25 0.08 0.08</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.25 0.08 0.08</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.95 0.85 0.1 1</ambient>
+            <diffuse>0.95 0.85 0.1 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Obstacle 2 (Blue Bar) -->
+    <model name="obstacle_blue_bar">
+      <static>true</static>
+      <pose>-1.35 -1.84 0.04 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.25 0.08 0.08</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.25 0.08 0.08</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.1 0.25 0.75 1</ambient>
+            <diffuse>0.1 0.25 0.75 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>

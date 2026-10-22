@@ -1,0 +1,25 @@
+# ROS 2 and colcon build output
+build/
+install/
+log/
+
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Generated obstacle-capture images
+saved_capcture/*
+saved_capture/*
+
+# Local IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local environment and secret files
+.env
+.env.*
+!.env.example
